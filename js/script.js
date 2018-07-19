@@ -19,32 +19,25 @@ const quotes = [
 },
 {
     quote: "People are trapped in history and history is trapped in them.",
-    source: "James Baldwin",
-    citation: null,
-    year: null
+    source: "James Baldwin"
 },
 {
     quote: "Success consists of going from failure to failure without loss of enthusiasm.",
     source: "Winston Churchill",
-    citation: null,
     year: "1950's"
 },
 {
     quote: "Don't waste your love on somebody, who doesn't value it.",
     source: "William Shakespeare",
-    citation: "Romeo and Juliet",
-    year: null
+    citation: "Romeo and Juliet"
 }
 ];
 
 //created a function to collect a random object and it's properties in the function itself.
 
-function getRandomQuote(quote, source, citation, year) {
+function getRandomQuote() {
 
-    let i =  Math.floor(Math.random() * quotes.length );
-    let getQuote = quotes[i];
-    return getQuote;
-
+    return quotes[Math.floor(Math.random() * quotes.length )];  
 }
 
 /*created a function that stores getRandomQuote into a variable name randomQuote, then
@@ -54,38 +47,30 @@ function printQuote() {
 
     let randomQuote = getRandomQuote();
 
-    /*called elements by class name, and passed them respective object properties while also taking advantage
-    of conditionals to adapt innerHTML so that webpage formatting is correct.*/
+    //constructed innerHTML, and passed stored properties to appropriate elements.
 
-    if (randomQuote.citation == null || randomQuote.year == null){
+    document.getElementById('quote-box').innerHTML = '<p class="quote">' + randomQuote.quote + '</p>' + '<p class="source">' + randomQuote.source +
+    '<span class="citation">' + randomQuote.citation +'</span>' + '<span class="year">' + randomQuote.year +'</span>\n</p>';
 
-        if(randomQuote.citation ==null && randomQuote.year == null){
+    //Stored elements in two new variabels, then created a conditional to remove html with empty (false) properties.
 
-            document.getElementById('quote-box').innerHTML = '<p class="quote">' + randomQuote.quote + '</p>' +
-            '<p class="source">' + randomQuote.source + '</p>';
+    let removeCit = document.querySelectorAll('.citation')[0];
+    let removeYr = document.querySelectorAll('.year')[0];
 
-        }else if(randomQuote.citation == null){
+    if(!randomQuote.citation && !randomQuote.year){
 
-            document.getElementById('quote-box').innerHTML = '<p class="quote">' + randomQuote.quote + '</p>' +
-            '<p class="source">' + randomQuote.source +
-            '<span class="year">' + randomQuote.year +'</span>\n</p>';
+        removeCit.parentNode.removeChild(removeCit);
+        removeYr.parentNode.removeChild(removeYr);
+    }
+    if(!randomQuote.citation){
 
-        } else {
+        removeCit.parentNode.removeChild(removeCit);
+    } else if (!randomQuote.year){
 
-            document.getElementById('quote-box').innerHTML = '<p class="quote">' + randomQuote.quote + '</p>' +
-            '<p class="source">' + randomQuote.source; +
-            '<span class="citation">' + randomQuote.citation +'</span>\n</p>';
-
-        }
-
+        removeYr.parentNode.removeChild(removeYr);
     } else {
 
-        document.getElementById('quote-box').innerHTML = '<p class="quote">' + randomQuote.quote + '</p>' +
-        '<p class="source">' + randomQuote.source +
-        '<span class="citation">' + randomQuote.citation +'</span>' +
-        '<span class="year">' + randomQuote.year +'</span>\n</p>';
-
-    };
+    }
 }
 
 //called the printQuote function.

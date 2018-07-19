@@ -15,7 +15,7 @@ const quotes = [
     quote: "If you can't fly then run, if you can't run then walk, if you can't walk then crawl, but whatever you do you have to keep moving forward.",
     source: "Martin Luther King Jr.",
     citation: "Cleveland Speech",
-    year: "1967,"
+    year: "1967"
 },
 {
     quote: "People are trapped in history and history is trapped in them.",
